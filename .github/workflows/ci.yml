@@ -21,6 +21,19 @@ jobs:
         run: sh mvnw -B -Pweb verify
       - name: Compare JVM and compiled JavaScript
         run: node --test web/tests/engine-parity.test.mjs
+      - name: Build the web interface around the compiled engine
+        working-directory: web
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build:ui
+          cmp dist/engine.js src/generated/engine.js
+      - name: Upload the playable web build
+        uses: actions/upload-artifact@v4
+        with:
+          name: frogger-web
+          path: web/dist/
+          if-no-files-found: error
+          retention-days: 30
       - name: Render native board without a display
         run: java -Djava.awt.headless=true -jar target/frogger-2.0.0.jar --render target/native-board.png
       - name: Upload desktop game

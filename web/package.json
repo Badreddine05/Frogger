@@ -1,0 +1,21 @@
+{
+  "name": "frogger-web",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Interface web de Frogger : rendu Canvas et commandes autour du moteur Java compilé par TeaVM.",
+  "scripts": {
+    "engine": "node ../scripts/build-engine.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "build": "npm run engine && vite build",
+    "build:ui": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "vite": "7.3.1"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
