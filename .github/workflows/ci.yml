@@ -23,3 +23,23 @@ jobs:
         run: node --test web/tests/engine-parity.test.mjs
       - name: Render native board without a display
         run: java -Djava.awt.headless=true -jar target/frogger-2.0.0.jar --render target/native-board.png
+      - name: Upload desktop game
+        uses: actions/upload-artifact@v4
+        with:
+          name: frogger-desktop-java17
+          path: target/frogger-2.0.0.jar
+          if-no-files-found: error
+          retention-days: 30
+      - name: Package browser runtime and notices
+        run: |
+          mkdir -p target/browser-runtime
+          cp web/src/generated/engine.js target/browser-runtime/engine.js
+          cp LICENSE target/browser-runtime/LICENSE
+          cp docs/licenses/TeaVM-LICENSE.txt docs/licenses/TeaVM-NOTICE.txt target/browser-runtime/
+      - name: Upload browser engine
+        uses: actions/upload-artifact@v4
+        with:
+          name: frogger-browser-engine
+          path: target/browser-runtime/
+          if-no-files-found: error
+          retention-days: 30

@@ -85,6 +85,8 @@ Un rendu du seul terrain peut aussi être exporté sans écran :
 
 Le workflow CI construit le moteur Java et TeaVM, exécute les tests de règles et de parité, puis produit un rendu natif sans écran. Il ne compile pas encore le frontend en cours de reprise et ne déploie rien. Une étape de construction et de validation du frontend doit être ajoutée lors de son intégration. Les artefacts générés, caches, dépendances npm et fichiers d'IDE sont ignorés par Git.
 
+Une exécution réussie conserve deux archives pendant 30 jours dans les artefacts GitHub Actions : `frogger-desktop-java17` contient le JAR exécutable ; `frogger-browser-engine` contient le module `engine.js`, la licence du code original et les notices TeaVM. L'absence d'un fichier nécessaire fait échouer la préparation ou l'envoi de l'artefact.
+
 Le code original de la version 2 est sous MIT. Les notices exactes de TeaVM 0.16.0 et de Maven Wrapper 3.3.4 sont conservées dans `docs/licenses/`, avec les licences OFL des deux polices présentes au passage de relais. Le frontend doit embarquer la licence et la notice TeaVM ainsi que les notices des assets qu'il retient. Le noyau Java natif n'utilise pas les polices web.
 
 Les scripts du wrapper sont générés par Apache Maven Wrapper et conservent leurs en-têtes. Aucun JAR de l'ancien environnement fourni n'est utilisé dans la nouvelle construction. Les auteurs et versions initiales restent dans l'historique Git ; voir `docs/HISTORIQUE.md`.
