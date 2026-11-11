@@ -1,0 +1,4 @@
+mvnw text eol=lf
+scripts/*.sh text eol=lf
+*.cmd text eol=crlf
+docs/licenses/* -text

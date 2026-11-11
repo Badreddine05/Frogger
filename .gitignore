@@ -1,0 +1,9 @@
+target/
+out/
+.idea/
+*.iml
+web/node_modules/
+web/dist/
+web/src/generated/
+*.log
+.DS_Store
